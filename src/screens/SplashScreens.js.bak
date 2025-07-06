@@ -1,0 +1,42 @@
+import { View, Text, ImageBackground } from "react-native";
+import React, { useEffect } from "react";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import { useFonts } from "expo-font";
+import { useCallback } from "react";
+import * as SplashScreen from "expo-splash-screen";
+import { useNavigation } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+
+export default function SplashScreens() {
+  const navigation = useNavigation();
+
+  // ... (fontsLoaded, etc.) ...
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+
+    setTimeout(() => {
+      // *** CHANGE THIS LINE ***
+      navigation.navigate("HomeTabs"); // <--- Change to HomeTabs
+    }, 3000); // 3 seconds delay
+  });
+
+  useEffect(() => {
+    onLayoutRootView();
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  return (
+    <View
+      // ... (your splash screen JSX) ...
+    >
+      <Text className="text-white text-3xl font-extrabold uppercase">
+        Stacks news
+      </Text>
+    </View>
+  );
+}

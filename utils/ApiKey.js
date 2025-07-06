@@ -1,1 +1,1 @@
-export const newsApiKey = "ADD_YOUR_API_KEY";
+export const newsApiKey = "eb080d6f006a4d068a852f914673d458";
